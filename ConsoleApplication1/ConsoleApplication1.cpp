@@ -1,14 +1,17 @@
 // ConsoleApplication1.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+#include <boost/lambda/lambda.hpp>
 #include <iostream>
-
-using namespace std;
+#include <iterator>
+#include <algorithm>
 
 int main()
 {
-	cout << "Hello World!" << endl;
-    return 0;
+	using namespace boost::lambda;
+	typedef std::istream_iterator<int> in;
+
+	std::for_each(
+		in(std::cin), in(), std::cout << (_1 * 3) << " ");
 }
 
